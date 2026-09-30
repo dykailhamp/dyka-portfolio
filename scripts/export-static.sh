@@ -26,6 +26,7 @@ export_page() {
 
     if ! curl --show-error --fail "$base_url$route" > "$destination"; then
         cat /tmp/dyka-laravel.log
+        find storage/logs -type f -name '*.log' -print -exec tail -n 80 {} \;
         exit 1
     fi
 }
