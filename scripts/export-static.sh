@@ -47,7 +47,7 @@ find "$output_dir" -name '*.html' -print0 | xargs -0 sed -i \
     -e "s#src=\"/images/#src=\"${base_path}/images/#g" \
     -e "s#href=\"/about\"#href=\"${base_path}/about/\"#g" \
     -e "s#href=\"/\"#href=\"${base_path}/\"#g" \
-    -e "s#href=\"/portfolio/#href=\"${base_path}/portfolio/#g"
+    -e "s#href=\"/portfolio/#href=\"${base_path}/portfolio/#g" \
     -e "s#http://localhost${base_path}#${base_path}#g" \
     -e "s#http://localhost#${base_path}#g"
 
