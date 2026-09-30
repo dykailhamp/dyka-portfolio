@@ -48,6 +48,7 @@ find "$output_dir" -name '*.html' -print0 | xargs -0 sed -i \
     -e "s#href=\"/about\"#href=\"${base_path}/about/\"#g" \
     -e "s#href=\"/\"#href=\"${base_path}/\"#g" \
     -e "s#href=\"/portfolio/#href=\"${base_path}/portfolio/#g" \
+    -e "s#http://127.0.0.1:${server_port}#${base_path}#g" \
     -e "s#http://localhost${base_path}#${base_path}#g" \
     -e "s#http://localhost#${base_path}#g"
 
