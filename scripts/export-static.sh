@@ -20,11 +20,21 @@ for attempt in {1..20}; do
     sleep 1
 done
 
-curl --show-error --fail "$base_url/" > "$output_dir/index.html"
-curl --show-error --fail "$base_url/about" > "$output_dir/about/index.html"
-curl --show-error --fail "$base_url/portfolio/genpro-apps" > "$output_dir/portfolio/genpro-apps/index.html"
-curl --show-error --fail "$base_url/portfolio/bakso-pak-eko" > "$output_dir/portfolio/bakso-pak-eko/index.html"
-curl --show-error --fail "$base_url/portfolio/tuku-tiket-dolan" > "$output_dir/portfolio/tuku-tiket-dolan/index.html"
+export_page() {
+    local route="$1"
+    local destination="$2"
+
+    if ! curl --show-error --fail "$base_url$route" > "$destination"; then
+        cat /tmp/dyka-laravel.log
+        exit 1
+    fi
+}
+
+export_page / "$output_dir/index.html"
+export_page /about "$output_dir/about/index.html"
+export_page /portfolio/genpro-apps "$output_dir/portfolio/genpro-apps/index.html"
+export_page /portfolio/bakso-pak-eko "$output_dir/portfolio/bakso-pak-eko/index.html"
+export_page /portfolio/tuku-tiket-dolan "$output_dir/portfolio/tuku-tiket-dolan/index.html"
 
 cp -R public/images "$output_dir/images"
 cp -R public/build "$output_dir/build"
