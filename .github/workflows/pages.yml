@@ -47,6 +47,8 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate --force
+          sed -i 's/^SESSION_DRIVER=.*/SESSION_DRIVER=array/' .env
+          sed -i 's/^CACHE_STORE=.*/CACHE_STORE=array/' .env
 
       - name: Export static pages
         run: bash scripts/export-static.sh
